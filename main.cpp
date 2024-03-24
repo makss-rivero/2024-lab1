@@ -1,8 +1,7 @@
 #include <iostream>
 #include <map>;
 using namespace std;
-
-
+// TASK
 /*
  * In Visual Studio environment create a console program in C/C++ based on created algorithm by using structures.
  * User should be able to: add data in array of structures,
@@ -19,7 +18,7 @@ int main() {
 int studentCode = 84883;
 int totalTaskCount = 20;
 int taskNumber = studentCode % totalTaskCount;
-cout << "Task number: " << taskNumber << endl;
+cout << "Student code: " << studentCode << " & Task number: " << taskNumber << endl;
 
 cout << endl;
 
@@ -36,14 +35,16 @@ struct Company {
             {"Latvia", "Euro"},
             {"Germany", "Euro"},
             {"UK", "Pound Sterling"},
-            {"USA", "US Dollar"}
+            {"US", "US Dollar"}
     };
 
 const int companiesCount = 10;
 const int minimalCompaniesCount = 1;
+int companiesList = 0;
 Company companies[companiesCount];
 
 for (int i = 0; i < companiesCount; i++) {
+    companiesList++;
     cout << "Enter company " << i + 1 << " code: ";
     cin >> companies[i].companyCode;
     cout << "Enter company name: ";
@@ -56,21 +57,25 @@ for (int i = 0; i < companiesCount; i++) {
     cin >> companies[i].taxationYearStart;
     cout << "Enter " + companies[i].companyName + " taxation year end: ";
     cin >> companies[i].taxationYearEnd;
+    cout << endl;
 
     if (i > minimalCompaniesCount &&  i % 2 == 0) {
         cout << "Would you like to add another company? (yes/no): ";
         string answer;
         cin >> answer;
-        if (answer != "yes") {
+        if (answer == "no") {
             break;
         }
     }
     cout << endl;
 }
-
 cout << "---------Provided companies list------------: " << endl;
+    cout << endl;
 
 for (int i = 0; i < companiesCount; i++) {
+    if (companies[i].companyCode == 0) {
+        break;
+    }
     cout << "Company " << i + 1 << " data: " << endl;
     cout << "Company code: " << companies[i].companyCode << endl;
     cout << "Company name: " << companies[i].companyName << endl;
@@ -79,41 +84,16 @@ for (int i = 0; i < companiesCount; i++) {
     << endl;
     cout << "--------------------------------------------" << endl;
 }
-
 cout << "---------Company that paid lowest taxes amount------------: " << endl;
 
 float lowestTaxesAmount = companies[0].paidTaxesAmount;
 int lowestTaxesAmountIndex = 0;
-for (int i = 1; i < companiesCount; i++) {
+for (int i = 1; i < companiesList; i++) {
     if (companies[i].paidTaxesAmount < lowestTaxesAmount) {
         lowestTaxesAmount = companies[i].paidTaxesAmount;
         lowestTaxesAmountIndex = i;
     }
 }
-
 cout << "Company that paid lowest taxes amount: " << companies[lowestTaxesAmountIndex].companyName << endl;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     return 0;
 }
